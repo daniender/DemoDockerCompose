@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  eureka-server:
+    image: eureka #name for this microservice image
+    restart: always
+    container_name: eureka
+    ports:
+      - '8761:8761'
+    networks:
+      - 'dockerdemo-network'
+  zuul-service:
+    image: zuul #name for this microservice image
+    restart: always
+    container_name: zuul
+    ports:
+      - '8762:8762'
+    networks:
+      - 'dockerdemo-network'
+  task-microservice:
+    image: taskservice #name for this microservice image
+    restart: always
+    container_name: taskservice
+    networks:
+      - 'dockerdemo-network'
+networks:
+  dockerdemo-network: #network for our services to communicate between them
